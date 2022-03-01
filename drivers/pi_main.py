@@ -1,7 +1,7 @@
 import os
 import sys
 import threading
-import pigpio
+# import pigpio
 import time
 import copy
 import math
@@ -10,7 +10,7 @@ root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(root_dir)
 from utils import log
 from storage import save_data
-from drivers import pi_softuart, com_data
+# from drivers import pi_softuart, com_data
 import config
 from moveControl.pathTrack import simple_pid
 from drivers import com_data

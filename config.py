@@ -11,8 +11,9 @@ ship_code = ship_code_config.ship_code
 # 单片机
 # stc_port = '/dev/ttyAMA0'
 b_stc_com = 1
-# stc_port = '/dev/ttyUSB0'
-stc_port = '/dev/ttyAMA0'
+# stc_port = '/dev/ttyUSB0'  # usb转串口编号
+#stc_port = '/dev/ttyAMA0'   # 树莓派自身串口编号
+stc_port = '/dev/ttyS5'   # orangepi  串口编号
 stc_baud = 115200
 if b_stc_com and os.path.exists(stc_port):
     b_com_stc = 1
@@ -25,7 +26,7 @@ high_f_pi2mqtt_interval = 0.2  # 高频率发送mqtt话题数据间隔
 mqtt_host = '116.62.44.118'
 # mqtt_host = '47.97.183.24'
 mqtt_port = 1883
-is_single=True    # 是否使用信号放接受方式
+is_single=False    # 是否使用信号放接受方式
 class CurrentPlatform(enum.Enum):
     windows = 1
     linux = 2
@@ -40,7 +41,7 @@ if sysstr == "Windows":
 elif sysstr == "Linux":  # 树莓派上也是Linux
     print("Call Linux tasks")
     # 公司Linux电脑名称
-    if platform.node() == 'raspberrypi':
+    if platform.node() == 'raspberrypi' or platform.node() == 'orangepizero2':
         current_platform = CurrentPlatform.pi
     else:
         current_platform = CurrentPlatform.linux

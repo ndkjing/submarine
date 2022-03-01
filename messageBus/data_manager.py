@@ -39,7 +39,8 @@ class DataManager:
             self.single_line = signal('single_line')
         if config.current_platform == config.CurrentPlatform.pi:
             if config.is_single:
-                self.pi_main_obj = pi_main.PiMain([self.single_move,self.single_line],[self.send_stc_motor_single,self.send_stc_motor_single])
+                self.pi_main_obj = pi_main.PiMain([self.single_move, self.single_line],
+                                                  [self.send_stc_motor_single, self.send_stc_motor_single])
             else:
                 self.pi_main_obj = pi_main.PiMain()
 
@@ -168,7 +169,7 @@ class DataManager:
         while 1:
             time.sleep(config.high_f_pi2mqtt_interval)
             # 判断数据是否有修改过
-            print('self.pi_main_obj.b_receive_pos', self.pi_main_obj.b_receive_pos)
+            # print('self.pi_main_obj.b_receive_pos', self.pi_main_obj.b_receive_pos)
             if not config.home_debug and self.pi_main_obj and self.pi_main_obj.b_receive_pos:
                 high_f_status_data = {
                     "pos_r": self.pi_main_obj.pos_list[0],

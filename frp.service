@@ -1,0 +1,14 @@
+[Unit]
+Description=Frp Client
+Wants=network-online.target
+After = network-online.target
+[Service]
+User=root
+WorkingDirectory=/home/orangepi/frp/
+LimitNOFILE=4096
+PIDFile=/var/run/sakurafrp/client.pid
+ExecStart=/home/orangepi/frp/frpc -c /home/orangepi/frp/frpc.ini
+Restart=on-failure
+StartLimitInterval=600
+[Install]
+WantedBy=multi-user.target
